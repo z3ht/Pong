@@ -30,11 +30,10 @@ public class Pong extends JFrame implements Runnable {
 		
 		this.scale = Math.min(this.getWidth() / 70, this.getHeight() / 35);
 		this.panel = new PongPanel(this);
-		this.scoreboard = new Scoreboard(this, (int) (scale*1.5));
+		this.scoreboard = new Scoreboard(this);
 		this.border = new Border(this);
 		this.ball = new Ball(this,
-				new Point((border.getxMax()-border.getxMin())/2 + border.getxMin(), (border.getyMax()-border.getyMin())/2 + border.getyMin()),
-				(int) (scale*.3), (int) ((border.getxMax()-border.getxMin())*.014));
+				new Point((border.getxMax()-border.getxMin())/2 + border.getxMin(), (border.getyMax()-border.getyMin())/2 + border.getyMin()));
 		createPlayers();
 		for(Racket player : players)
 			scoreboard.addCompetitor(player);
@@ -49,10 +48,10 @@ public class Pong extends JFrame implements Runnable {
 		
 		this.players.add(new Racket("Pinger", new int[] {KeyEvent.VK_W, KeyEvent.VK_A}, new int[] {KeyEvent.VK_S, KeyEvent.VK_D},
 				new Point((int) (xDiameter*.02) + border.getxMin() - (int) (xDiameter*.014), (yDiameter/2) - (int) (yDiameter*.0625) + border.getyMin()),
-				new Point((int) (xDiameter*.014), (int) (yDiameter*.125)),scale/4, this));
+				this));
 		this.players.add(new Racket("Ponger", new int[] {KeyEvent.VK_UP, KeyEvent.VK_LEFT}, new int[] {KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT},
 				new Point((int) (xDiameter*.98) + border.getxMin(), (yDiameter/2) - (int) (yDiameter*.0625) + border.getyMin()),
-				new Point((int) (xDiameter*.014), (int) (yDiameter*.125)),scale/4, this));
+				this));
 	}
 	
 	private void createDefaultSettings() {
@@ -72,7 +71,7 @@ public class Pong extends JFrame implements Runnable {
 					racket.update();
 				ball.update();
 				panel.repaint();
-				Thread.sleep(8);
+				Thread.sleep(7);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

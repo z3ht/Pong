@@ -13,9 +13,9 @@ public class Scoreboard {
 	private Pong game;
 	private int fontSize;
 	
-	public Scoreboard(Pong game, int fontSize) {
+	public Scoreboard(Pong game) {
 		this.game = game;
-		this.fontSize = fontSize;
+		this.fontSize = (int) (game.getScale() * 1.5);
 	}
 	
 	public void paint(Graphics g) {

@@ -15,12 +15,12 @@ public class Ball {
 	private int length;
 	private boolean ballInMotion;
 	
-	public Ball(Pong game, Point startPos, int maxAccel, int length) {
+	public Ball(Pong game, Point startPos) {
 		this.game = game;
 		this.xPos = (int)  startPos.getX();
 		this.yPos = (int) startPos.getY();
-		this.length = length;
-		this.maxAccel = maxAccel;
+		this.length = (int) ((game.getBorder().getxMax()-game.getBorder().getxMin())*.014);
+		this.maxAccel = (int) (game.getScale()*.3);
 		this.startPos = startPos;
 		this.lastToTouch = null;
 		this.ballInMotion = false;

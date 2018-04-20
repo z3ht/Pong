@@ -20,17 +20,21 @@ public class Racket extends JPanel implements Scorable {
 	private int xSize;
 	private int ySize;
 	
-	public Racket(String name, int[] upTriggerKeys, int[] downTriggerKeys, Point startingPos, Point size, int speed, Pong game) {
+	public Racket(String name, int[] upTriggerKeys, int[] downTriggerKeys, Point startingPos, Pong game) {
 		this.upTriggerKeys = upTriggerKeys;
 		this.downTriggerKeys = downTriggerKeys;
 		this.game = game;
 		this.name = name;
 		this.score = 0;
-		this.speed = speed;
-		this.xPos = (int) startingPos.getX();
-		this.yPos = (int) startingPos.getY();
-		this.xSize = (int) size.getX();
-		this.ySize = (int) size.getY();
+		this.speed = game.getScale()/4;
+		
+		int yDiameter = game.getBorder().getyMax() - game.getBorder().getyMin();
+		int xDiameter = game.getBorder().getxMax() - game.getBorder().getxMin();
+		
+		this.xPos = startingPos.x;
+		this.yPos = startingPos.y;
+		this.xSize = (int) (xDiameter*.014);
+		this.ySize = (int) (yDiameter*.125);
 	}
 	
 	public boolean isTriggerKeyPressed(int pressedKey) {
