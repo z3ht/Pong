@@ -51,6 +51,9 @@ public class Ball {
 			if(xDist > xBubble || yDist > yBubble)
 				continue;
 			
+			if(lastToTouch == racket)
+				return;
+			
 			this.lastToTouch = racket;
 			
 			kick();
